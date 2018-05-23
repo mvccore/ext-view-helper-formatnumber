@@ -11,7 +11,7 @@
  * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
-namespace MvcCore\Ext\View\Helpers;
+namespace MvcCore\Ext\Views\Helpers;
 
 /**
  * Responsibility - format number by explicitly given arguments or by default configured arguments.
@@ -35,7 +35,7 @@ namespace MvcCore\Ext\View\Helpers;
  * @see http://php.net/manual/en/function.number-format.php
  * @see http://php.net/manual/en/function.localeconv.php
  */
-class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
+class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 {
 	/**
 	 * MvcCore Extension - View Helper - Assets - version:
@@ -49,7 +49,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	 * to configure as singleton before it's used for first time.
 	 * Example:
 	 *	`\MvcCore\Ext\View\Helpers\FormatNumber::GetInstance()`
-	 * @var \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @var \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	protected static $instance;
 
@@ -142,7 +142,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	/**
 	 * Set default numerics count after decimal point.
 	 * @param int $defaultDecimalsCount
-	 * @return \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	public function & SetDefaultDecimalsCount ($defaultDecimalsCount = 2) {
 		$this->defaultDecimalsCount = $defaultDecimalsCount;
@@ -161,7 +161,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	 * @see http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#details
 	 * @see http://www.icu-project.org/apiref/icu4c/classRuleBasedNumberFormat.html#details
 	 * @param int $intlDefaultStyle
-	 * @return \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	public function & SetIntlDefaultStyle ($intlDefaultStyle = 1) {// 1 means `\NumberFormatter::DEFAULT_STYLE`
 		$this->intlDefaultStyle = $intlDefaultStyle;
@@ -173,7 +173,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	 * This setter is used for `Intl` number formatter.
 	 * @see http://php.net/manual/en/numberformatter.create.php
 	 * @param string $intlDefaultPattern
-	 * @return \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	public function & SetIntlDefaultPattern ($intlDefaultPattern = '') {
 		$this->intlDefaultPattern = $intlDefaultPattern;
@@ -186,7 +186,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	 * @see http://php.net/manual/en/numberformatter.setattribute.php
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatattribute
 	 * @param array $intlDefaultAttributes
-	 * @return \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	public function & SetIntlDefaultAttributes ($intlDefaultAttributes = array()) {
 		$this->intlDefaultAttributes = $intlDefaultAttributes;
@@ -199,7 +199,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	 * @see http://php.net/manual/en/numberformatter.settextattribute.php
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformattextattribute
 	 * @param array $intlDefaultTextAttributes
-	 * @return \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	public function & SetIntlDefaultTextAttributes ($intlDefaultTextAttributes = array()) {
 		$this->intlDefaultTextAttributes = $intlDefaultTextAttributes;
@@ -213,7 +213,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	 * Use this function only for fallback if formating is not by `Intl` extension.
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @param array $localeConventions Locale specific number formating conventions.
-	 * @return \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	public function & SetLocaleConventions (array $localeConventions = array()) {
 		$this->localeConventions = (object) $localeConventions;
@@ -226,7 +226,7 @@ class FormatNumber extends \MvcCore\Ext\View\Helpers\Internationalized
 	 * and when there is necessary to define some default formating rules.
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @param string[] $defaultLocaleConventions
-	 * @return \MvcCore\Ext\View\Helpers\FormatNumber
+	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
 	public function & SetDefaultLocaleConventions ($defaultLocaleConventions = array()) {
 		$this->defaultLocaleConventions = (object) $defaultLocaleConventions;
