@@ -87,7 +87,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatattribute
 	 * @var int[]
 	 */
-	protected $intlDefaultAttributes = array();
+	protected $intlDefaultAttributes = [];
 
 	/**
 	 * Default set of text attribute(s) associated with the formatter.
@@ -96,14 +96,14 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformattextattribute
 	 * @var int[]
 	 */
-	protected $intlDefaultTextAttributes = array();
+	protected $intlDefaultTextAttributes = [];
 
 	/**
 	 * System `setlocale()` category to set up system locale automaticly in `parent::SetView()` method.
 	 * This property is used only for fallback if formating is not by `Intl` extension.
 	 * @var \int[]
 	 */
-	protected $localeCategories = array(LC_NUMERIC);
+	protected $localeCategories = [LC_NUMERIC];
 
 	/**
 	 * Numeric formatting information by system locale settings.
@@ -112,7 +112,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @var \stdClass
 	 */
-	protected $localeConventions = array();
+	protected $localeConventions = [];
 
 	/**
 	 * Default locale conventions used for `Intl` formating fallback,
@@ -121,7 +121,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @var string[]
 	 */
-	protected $defaultLocaleConventions = array(
+	protected $defaultLocaleConventions = [
 		'decimal_point'		=> '.',	// numbers decimal point
 		'thousands_sep'		=> ',',	// numbers thousands separator
 		'mon_decimal_point'	=> '.',	// money decimal point
@@ -137,7 +137,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 		'n_sep_by_space'	=> 0,	// 0 - no space between currency and negative value
 		'p_sign_posn'		=> 3,	// 3 - sign string immediately before currency
 		'n_sign_posn'		=> 3,	// 3 - sign string immediately before currency
-	);
+	];
 
 	/**
 	 * Set default numerics count after decimal point.
@@ -188,7 +188,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @param array $intlDefaultAttributes
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
-	public function & SetIntlDefaultAttributes ($intlDefaultAttributes = array()) {
+	public function & SetIntlDefaultAttributes ($intlDefaultAttributes = []) {
 		$this->intlDefaultAttributes = $intlDefaultAttributes;
 		return $this;
 	}
@@ -201,7 +201,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @param array $intlDefaultTextAttributes
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
-	public function & SetIntlDefaultTextAttributes ($intlDefaultTextAttributes = array()) {
+	public function & SetIntlDefaultTextAttributes ($intlDefaultTextAttributes = []) {
 		$this->intlDefaultTextAttributes = $intlDefaultTextAttributes;
 		return $this;
 	}
@@ -215,7 +215,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @param array $localeConventions Locale specific number formating conventions.
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
-	public function & SetLocaleConventions (array $localeConventions = array()) {
+	public function & SetLocaleConventions (array $localeConventions = []) {
 		$this->localeConventions = (object) $localeConventions;
 		return $this;
 	}
@@ -228,7 +228,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 	 * @param string[] $defaultLocaleConventions
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumber
 	 */
-	public function & SetDefaultLocaleConventions ($defaultLocaleConventions = array()) {
+	public function & SetDefaultLocaleConventions ($defaultLocaleConventions = []) {
 		$this->defaultLocaleConventions = (object) $defaultLocaleConventions;
 		return $this;
 	}
@@ -336,7 +336,7 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 		$textAttributes = NULL
 	) {
 		if ($decimalsCount !== NULL) $decimalsCount = $this->defaultDecimalsCount;
-		$attributes = $attributes !== NULL ? $attributes : array() ;
+		$attributes = $attributes !== NULL ? $attributes : [] ;
 		$attributes[\NumberFormatter::FRACTION_DIGITS] = $decimalsCount;
 		$formater = $this->getIntlNumberFormater(
 			$this->langAndLocale,
@@ -369,13 +369,13 @@ class FormatNumber extends \MvcCore\Ext\Views\Helpers\Internationalized
 		$langAndLocale = NULL,
 		$style = NULL,
 		$pattern = NULL,
-		$attributes = array(),
-		$textAttributes = array()
+		$attributes = [],
+		$textAttributes = []
 	) {
-		$key = implode('_', array(
+		$key = implode('_', [
 			'number',
 			serialize(func_get_args())
-		));
+		]);
 		if (!isset($this->intlFormaters[$key])) {
 			$formater = \numfmt_create(
 				$this->langAndLocale, $style, $pattern
