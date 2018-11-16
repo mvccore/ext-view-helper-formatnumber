@@ -15,12 +15,12 @@ namespace MvcCore\Ext\Views\Helpers;
 
 /**
  * Responsibility - format number by explicitly given arguments or by default configured arguments.
- * - Formating processed by `Intl` extension if installed or by `\number_format()` and `\localeconv()` fallback.
+ * - Formatting processed by `Intl` extension if installed or by `\number_format()` and `\localeconv()` fallback.
  * - Possiblity to define default decimal points value to not define it every time using `FormatNumber()` call.
- * - Possiblity to define any argument to create `Intl` number formater instance in every call or globaly by default setters.
- * - Possiblity to define any argument for `number_format()` and `\localeconv()` fallback in every call or globaly by default setters.
- * - If there is used formating fallback and no locale formating conventions are defined, system locale settings is automaticly
- *   configured by request language and request locale and by system locale settings are defined locale formating conventions.
+ * - Possiblity to define any argument to create `Intl` number formatter instance in every call or globally by default setters.
+ * - Possiblity to define any argument for `number_format()` and `\localeconv()` fallback in every call or globally by default setters.
+ * - If there is used formatting fallback and no locale formatting conventions are defined, system locale settings is automatically
+ *   configured by request language and request locale and by system locale settings are defined locale formatting conventions.
  * - Fallback result string always returned in response encoding, in UTF-8 by default.
  *
  * @see http://php.net/manual/en/numberformatter.create.php
@@ -39,7 +39,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 {
 	/**
 	 * MvcCore Extension - View Helper - Assets - version:
-	 * Comparation by PHP function version_compare();
+	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
 	const VERSION = '5.0.0-alpha';
@@ -82,7 +82,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 
 	/**
 	 * Default set of numeric attribute(s) associated with the formatter.
-	 * Array with keys describing number formater constants and with values describing specific values.
+	 * Array with keys describing number formatter constants and with values describing specific values.
 	 * @see http://php.net/manual/en/numberformatter.setattribute.php
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatattribute
 	 * @var int[]
@@ -91,7 +91,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 
 	/**
 	 * Default set of text attribute(s) associated with the formatter.
-	 * Array with keys describing number formater constants and with values describing specific values.
+	 * Array with keys describing number formatter constants and with values describing specific values.
 	 * @see http://php.net/manual/en/numberformatter.settextattribute.php
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformattextattribute
 	 * @var int[]
@@ -99,8 +99,8 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	protected $intlDefaultTextAttributes = [];
 
 	/**
-	 * System `setlocale()` category to set up system locale automaticly in `parent::SetView()` method.
-	 * This property is used only for fallback if formating is not by `Intl` extension.
+	 * System `setlocale()` category to set up system locale automatically in `parent::SetView()` method.
+	 * This property is used only for fallback if formatting is not by `Intl` extension.
 	 * @var \int[]
 	 */
 	protected $localeCategories = [LC_NUMERIC];
@@ -108,16 +108,16 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	/**
 	 * Numeric formatting information by system locale settings.
 	 * There are used all keys defined in property `$this->defaultLocaleConventions;`.
-	 * This property is used only for fallback if formating is not by `Intl` extension.
+	 * This property is used only for fallback if formatting is not by `Intl` extension.
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @var \stdClass
 	 */
 	protected $localeConventions = [];
 
 	/**
-	 * Default locale conventions used for `Intl` formating fallback,
+	 * Default locale conventions used for `Intl` formatting fallback,
 	 * when is not possible to configure system locale value
-	 * and when there is necessary to define some default formating rules.
+	 * and when there is necessary to define some default formatting rules.
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @var array|\stdClass
 	 */
@@ -127,7 +127,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 		'mon_decimal_point'	=> '.',	// money decimal point
 		'mon_thousands_sep'	=> ',',	// money thousands separator
 		'int_curr_symbol'	=> 'USD',// international currency symbol for `Intl` extension
-		'currency_symbol'	=> '$',	// text currency symbol for fallback formating
+		'currency_symbol'	=> '$',	// text currency symbol for fallback formatting
 		'frac_digits'		=> 2,	// decimals count
 		'positive_sign'		=> '',	// positive sign character
 		'negative_sign'		=> '-',	// negative sign character
@@ -182,7 +182,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 
 	/**
 	 * Set default set of numeric attribute(s) associated with `Intl` number formatter.
-	 * Array with keys describing number formater constants and with values describing specific values.
+	 * Array with keys describing number formatter constants and with values describing specific values.
 	 * @see http://php.net/manual/en/numberformatter.setattribute.php
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatattribute
 	 * @param array $intlDefaultAttributes
@@ -195,7 +195,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 
 	/**
 	 * Set default set of text attribute(s) associated with `Intl` number formatter.
-	 * Array with keys describing number formater constants and with values describing specific values.
+	 * Array with keys describing number formatter constants and with values describing specific values.
 	 * @see http://php.net/manual/en/numberformatter.settextattribute.php
 	 * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformattextattribute
 	 * @param array $intlDefaultTextAttributes
@@ -208,11 +208,11 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 
 	/**
 	 * Set custom number (and money) formatting conventions if you don't want to use
-	 * automaticly assigned formating conventions by system locale settings.
+	 * automatically assigned formatting conventions by system locale settings.
 	 * You have to define all keys defined in property `$this->defaultLocaleConventions;`.
-	 * Use this function only for fallback if formating is not by `Intl` extension.
+	 * Use this function only for fallback if formatting is not by `Intl` extension.
 	 * @see http://php.net/manual/en/function.localeconv.php
-	 * @param array $localeConventions Locale specific number formating conventions.
+	 * @param array $localeConventions Locale specific number formatting conventions.
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
 	public function & SetLocaleConventions (array $localeConventions = []) {
@@ -221,9 +221,9 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	}
 
 	/**
-	 * Set default locale conventions used for `Intl` formating fallback,
+	 * Set default locale conventions used for `Intl` formatting fallback,
 	 * when is not possible to configure system locale value
-	 * and when there is necessary to define some default formating rules.
+	 * and when there is necessary to define some default formatting rules.
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @param string[] $defaultLocaleConventions
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
@@ -238,13 +238,13 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * or by default settings configured by it's setters. This function uses two
 	 * ways to format numbers:
 	 *
-	 *	1)	Formating by `Intl` extension - creating `\NumberFormatter` instance
+	 *	1)	Formatting by `Intl` extension - creating `\NumberFormatter` instance
 	 *		and calling `format()` function. You can format first argument by
-	 *		explicitly given next following arguments to create formater instance.
+	 *		explicitly given next following arguments to create formatter instance.
 	 *		If there are no next following arguments, there are used default arguments
-	 *		to create formater instance defined by it's helper setters above.
+	 *		to create formatter instance defined by it's helper setters above.
 	 *
-	 *	2)	Formating fallback by `number_format()` with explicitly given next
+	 *	2)	Formatting fallback by `number_format()` with explicitly given next
 	 *		following arguments to specify decimals count, decimal point and thousands separator.
 	 *		If there are no values for decimal point and thousands separator, there is
 	 *		used values from protected $this->localeConventions array, which should be defined
@@ -266,46 +266,46 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param int|float|string	$number									The number being formatted.
 	 * @param int|NULL			$decimalsCount							Optional, numerics count after decimal point. If `NULL`,
 	 *																	there is used configurable property `$this->defaultDecimalsCount`.
-	 * @param string|NULL		$formaterStyleOrDecimalPoint			1) Optional, `\NumberFormatter` constant to choose proper localized
-	 *																	   formater (`\NumberFormatter::DECIMAL`, `\NumberFormatter::PERCENT`,
+	 * @param string|NULL		$formatterStyleOrDecimalPoint			1) Optional, `\NumberFormatter` constant to choose proper localized
+	 *																	   formatter (`\NumberFormatter::DECIMAL`, `\NumberFormatter::PERCENT`,
 	 *																	   `\NumberFormatter::SPELLOUT`, `\NumberFormatter::DURATION`...).
 	 *																	2) Optional, decimal point separator for `number_format()` fallback.
 	 *																	   If `NULL`, there is used system locale settings value and if
 	 *																	   there are no locale system settings, there is used dot char - `.`.
-	 * @param array|string|NULL	$formaterPatternOrThousandsSeparator	1) Optional, number formater pattern for following style constants:
+	 * @param array|string|NULL	$formatterPatternOrThousandsSeparator	1) Optional, number formatter pattern for following style constants:
 	 *																	   - `\NumberFormatter::PATTERN_DECIMAL`
 	 *																	   - `\NumberFormatter::PATTERN_RULEBASED`
 	 *																	2) Optional, thousands separator for `number_format()` fallback.
 	 *																	   If `NULL`, there is used system locale settings value and if there
 	 *																	   is no system locale settings, there is used comma char - `,`.
-	 * @param array|NULL		$formaterAttributes						1) Optional number formater attributes, for example to max./min.
+	 * @param array|NULL		$formatterAttributes						1) Optional number formatter attributes, for example to max./min.
 	 *																	   integer digits etc...
-	 * @param array|NULL		$formaterTextAttributes					1) Optional number formater text attributes.
+	 * @param array|NULL		$formatterTextAttributes				1) Optional number formatter text attributes.
 	 * @return string
 	 */
 	public function FormatNumber (
 		$number = NULL,
 		$decimalsCount = NULL,
-		$formaterStyleOrDecimalPoint = NULL ,
-		$formaterPatternOrThousandsSeparator = NULL,
-		$formaterAttributes = NULL,
-		$formaterTextAttributes = NULL
+		$formatterStyleOrDecimalPoint = NULL ,
+		$formatterPatternOrThousandsSeparator = NULL,
+		$formatterAttributes = NULL,
+		$formatterTextAttributes = NULL
 	) {
 		$numberIsNumeric = is_numeric($number);
 		if (!$numberIsNumeric) return (string) $number;
 		$valueToFormat = $numberIsNumeric && is_string($number)
 			? floatval($number)
 			: $number;
-		if ($this->intlExtensionFormating) {
-			return $this->formatByIntlNumberFormater(
+		if ($this->intlExtensionFormatting) {
+			return $this->formatByIntlNumberFormatter(
 				$valueToFormat, $decimalsCount,
-				$formaterStyleOrDecimalPoint, $formaterPatternOrThousandsSeparator,
-				$formaterAttributes, $formaterTextAttributes
+				$formatterStyleOrDecimalPoint, $formatterPatternOrThousandsSeparator,
+				$formatterAttributes, $formatterTextAttributes
 			);
 		} else {
 			return $this->fallbackFormatByNumberFormat(
 				$valueToFormat, $decimalsCount,
-				$formaterStyleOrDecimalPoint, $formaterPatternOrThousandsSeparator
+				$formatterStyleOrDecimalPoint, $formatterPatternOrThousandsSeparator
 			);
 		}
 	}
@@ -319,15 +319,15 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param int|float		$valueToFormat	Numeric value to format.
 	 * @param int|NULL		$decimalsCount	Optional, numerics count after decimal point. If `NULL`,
 	 *										there is used configurable property `$this->defaultDecimalsCount`.
-	 * @param int|NULL		$style			`\NumberFormatter` constant to choose proper localized formater.
+	 * @param int|NULL		$style			`\NumberFormatter` constant to choose proper localized formatter.
 	 * @param string|NULL	$pattern		Optional pattern for style constants
 	 *										`NumberFormatter::PATTERN_DECIMAL` or
 	  *										`\NumberFormatter::PATTERN_RULEBASED`.
-	 * @param array|NULL	$attributes		Optional formater attributes.
-	 * @param array|NULL	$textAttributes	Optional formater text attributes.
+	 * @param array|NULL	$attributes		Optional formatter attributes.
+	 * @param array|NULL	$textAttributes	Optional formatter text attributes.
 	 * @return string
 	 */
-	protected function formatByIntlNumberFormater (
+	protected function formatByIntlNumberFormatter (
 		$valueToFormat = 0.0,
 		$decimalsCount = NULL,
 		$style = NULL,
@@ -338,7 +338,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 		if ($decimalsCount !== NULL) $decimalsCount = $this->defaultDecimalsCount;
 		$attributes = $attributes !== NULL ? $attributes : [] ;
 		$attributes[\NumberFormatter::FRACTION_DIGITS] = $decimalsCount;
-		$formater = $this->getIntlNumberFormater(
+		$formatter = $this->getIntlNumberFormatter(
 			$this->langAndLocale,
 			$style !== NULL
 				? $style
@@ -353,7 +353,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 				? $textAttributes
 				: $this->intlDefaultTextAttributes
 		);
-		return \numfmt_format($formater, $valueToFormat);
+		return \numfmt_format($formatter, $valueToFormat);
 	}
 
 	/**
@@ -365,7 +365,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param array			$textAttributes
 	 * @return \NumberFormatter
 	 */
-	protected function & getIntlNumberFormater (
+	protected function & getIntlNumberFormatter (
 		$langAndLocale = NULL,
 		$style = NULL,
 		$pattern = NULL,
@@ -376,22 +376,22 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			'number',
 			serialize(func_get_args())
 		]);
-		if (!isset($this->intlFormaters[$key])) {
-			$formater = \numfmt_create(
+		if (!isset($this->intlFormatters[$key])) {
+			$formatter = \numfmt_create(
 				$this->langAndLocale, $style, $pattern
 			);
 			foreach ($attributes as $key => $value)
-				\numfmt_set_attribute($formater, $key, $value);
+				\numfmt_set_attribute($formatter, $key, $value);
 			foreach ($textAttributes as $key => $value)
-				\numfmt_set_text_attribute($formater, $key, $value);
-			$this->intlFormaters[$key] = & $formater;
+				\numfmt_set_text_attribute($formatter, $key, $value);
+			$this->intlFormatters[$key] = & $formatter;
 		}
-		return $this->intlFormaters[$key];
+		return $this->intlFormatters[$key];
 	}
 
 	/**
-	 * Format a number with PHP `number_format()` with optionaly given decimals count,
-	 * by optionaly given decimal point and by optionaly given thousands separator.
+	 * Format a number with PHP `number_format()` with optionally given decimals count,
+	 * by optionally given decimal point and by optionally given thousands separator.
 	 * If there are no values for decimal point and thousands separator, there is
 	 * used values from protected $this->localeConventions array, which should be defined
 	 * by it's setter method. And if this array is not defined, there is used
@@ -439,7 +439,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			abs($valueToFormat), $decimalsCount,
 			$decimalPoint, $thousandsSeparator
 		);
-		// if formated number is under zero - formating rules will be different
+		// if formated number is under zero - formatting rules will be different
 		if ($negative) {
 			$currencyBeforeValue  = $lc->n_cs_precedes;
 			$signPosition    = $lc->n_sign_posn;
@@ -474,7 +474,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	/**
 	 * Try to set up local conventions by system locale settings
 	 * only if there was any success with setting up system locale.
-	 * If system locale is not set up properly - use default formating conventions.
+	 * If system locale is not set up properly - use default formatting conventions.
 	 * @see http://php.net/manual/en/function.localeconv.php
 	 * @return void
 	 */
