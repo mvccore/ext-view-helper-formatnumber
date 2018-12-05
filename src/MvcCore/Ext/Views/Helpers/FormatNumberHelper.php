@@ -16,9 +16,9 @@ namespace MvcCore\Ext\Views\Helpers;
 /**
  * Responsibility - format number by explicitly given arguments or by default configured arguments.
  * - Formatting processed by `Intl` extension if installed or by `\number_format()` and `\localeconv()` fallback.
- * - Possiblity to define default decimal points value to not define it every time using `FormatNumber()` call.
- * - Possiblity to define any argument to create `Intl` number formatter instance in every call or globally by default setters.
- * - Possiblity to define any argument for `number_format()` and `\localeconv()` fallback in every call or globally by default setters.
+ * - Possibility to define default decimal points value to not define it every time using `FormatNumber()` call.
+ * - Possibility to define any argument to create `Intl` number formatter instance in every call or globally by default setters.
+ * - Possibility to define any argument for `number_format()` and `\localeconv()` fallback in every call or globally by default setters.
  * - If there is used formatting fallback and no locale formatting conventions are defined, system locale settings is automatically
  *   configured by request language and request locale and by system locale settings are defined locale formatting conventions.
  * - Fallback result string always returned in response encoding, in UTF-8 by default.
@@ -420,7 +420,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			$this->setUpLocaleConventions();
 		}
 		$lc = & $this->localeConventions;
-		// decide number to format is possitive or negative
+		// decide number to format is positive or negative
 		$negative = $valueToFormat < 0;
 		// complete decimals count by given argument or by default fractal digits
 		$decimalsCount = $decimalsCount !== NULL
@@ -439,7 +439,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			abs($valueToFormat), $decimalsCount,
 			$decimalPoint, $thousandsSeparator
 		);
-		// if formated number is under zero - formatting rules will be different
+		// if formatted number is under zero - formatting rules will be different
 		if ($negative) {
 			$currencyBeforeValue  = $lc->n_cs_precedes;
 			$signPosition    = $lc->n_sign_posn;
@@ -461,11 +461,11 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			$result .= $signSymbol;
 		} elseif ($signPosition > 2 && $currencyBeforeValue) {
 			// sign symbol is before/after currency symbol
-			// and currency symbol is always before formated number
+			// and currency symbol is always before formatted number
 			$result = $signSymbol . $result;
 		} elseif ($signPosition > 2 && !$currencyBeforeValue) {
 			// sign symbol is before/after currency symbol
-			// and currency symbol is always after formated number
+			// and currency symbol is always after formatted number
 			$result .= $signSymbol;
 		}
 		return $this->encode($result);
