@@ -34,6 +34,7 @@ namespace MvcCore\Ext\Views\Helpers;
  * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformattextattribute
  * @see http://php.net/manual/en/function.number-format.php
  * @see http://php.net/manual/en/function.localeconv.php
+ * @method \MvcCore\Ext\Views\Helpers\FormatNumberHelper GetInstance()
  */
 class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 {
