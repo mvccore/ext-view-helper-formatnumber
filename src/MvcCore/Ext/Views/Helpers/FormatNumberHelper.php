@@ -337,8 +337,10 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 		$textAttributes = NULL
 	) {
 		if ($decimalsCount !== NULL) $decimalsCount = $this->defaultDecimalsCount;
-		$attributes = $attributes !== NULL ? $attributes : [] ;
-		$attributes[\NumberFormatter::FRACTION_DIGITS] = $decimalsCount;
+		$attributes = is_array($attributes) 
+			? $attributes 
+			: $this->intlDefaultAttributes ;
+		$attributes[\NumberFormatter::MIN_FRACTION_DIGITS] = $decimalsCount;
 		$formatter = $this->getIntlNumberFormatter(
 			$this->langAndLocale,
 			$style !== NULL
@@ -347,9 +349,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			$pattern !== NULL
 				? $pattern
 				: $this->intlDefaultPattern,
-			$attributes !== NULL
-				? $attributes
-				: $this->intlDefaultAttributes,
+			$attributes,
 			$textAttributes !== NULL
 				? $textAttributes
 				: $this->intlDefaultTextAttributes
