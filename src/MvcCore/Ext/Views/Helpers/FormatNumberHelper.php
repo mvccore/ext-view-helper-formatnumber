@@ -111,9 +111,9 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * There are used all keys defined in property `$this->defaultLocaleConventions;`.
 	 * This property is used only for fallback if formatting is not by `Intl` extension.
 	 * @see http://php.net/manual/en/function.localeconv.php
-	 * @var \stdClass
+	 * @var \stdClass|NULL
 	 */
-	protected $localeConventions = [];
+	protected $localeConventions = NULL;
 
 	/**
 	 * Default locale conventions used for `Intl` formatting fallback,
@@ -145,7 +145,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param int $defaultDecimalsCount
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
-	public function & SetDefaultDecimalsCount ($defaultDecimalsCount = 2) {
+	public function SetDefaultDecimalsCount ($defaultDecimalsCount = 2) {
 		$this->defaultDecimalsCount = $defaultDecimalsCount;
 		return $this;
 	}
@@ -164,7 +164,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param int $intlDefaultStyle
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
-	public function & SetIntlDefaultStyle ($intlDefaultStyle = 1) {// 1 means `\NumberFormatter::DEFAULT_STYLE`
+	public function SetIntlDefaultStyle ($intlDefaultStyle = 1) {// 1 means `\NumberFormatter::DEFAULT_STYLE`
 		$this->intlDefaultStyle = $intlDefaultStyle;
 		return $this;
 	}
@@ -176,7 +176,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param string $intlDefaultPattern
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
-	public function & SetIntlDefaultPattern ($intlDefaultPattern = '') {
+	public function SetIntlDefaultPattern ($intlDefaultPattern = '') {
 		$this->intlDefaultPattern = $intlDefaultPattern;
 		return $this;
 	}
@@ -189,7 +189,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param array $intlDefaultAttributes
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
-	public function & SetIntlDefaultAttributes ($intlDefaultAttributes = []) {
+	public function SetIntlDefaultAttributes ($intlDefaultAttributes = []) {
 		$this->intlDefaultAttributes = $intlDefaultAttributes;
 		return $this;
 	}
@@ -202,7 +202,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param array $intlDefaultTextAttributes
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
-	public function & SetIntlDefaultTextAttributes ($intlDefaultTextAttributes = []) {
+	public function SetIntlDefaultTextAttributes ($intlDefaultTextAttributes = []) {
 		$this->intlDefaultTextAttributes = $intlDefaultTextAttributes;
 		return $this;
 	}
@@ -216,7 +216,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param array $localeConventions Locale specific number formatting conventions.
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
-	public function & SetLocaleConventions (array $localeConventions = []) {
+	public function SetLocaleConventions (array $localeConventions = []) {
 		$this->localeConventions = (object) $localeConventions;
 		return $this;
 	}
@@ -229,7 +229,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param string[] $defaultLocaleConventions
 	 * @return \MvcCore\Ext\Views\Helpers\FormatNumberHelper
 	 */
-	public function & SetDefaultLocaleConventions ($defaultLocaleConventions = []) {
+	public function SetDefaultLocaleConventions ($defaultLocaleConventions = []) {
 		$this->defaultLocaleConventions = (object) $defaultLocaleConventions;
 		return $this;
 	}
@@ -366,7 +366,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * @param array			$textAttributes
 	 * @return \NumberFormatter
 	 */
-	protected function & getIntlNumberFormatter (
+	protected function getIntlNumberFormatter (
 		$langAndLocale = NULL,
 		$style = NULL,
 		$pattern = NULL,
@@ -385,7 +385,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 				\numfmt_set_attribute($formatter, $key, $value);
 			foreach ($textAttributes as $key => $value)
 				\numfmt_set_text_attribute($formatter, $key, $value);
-			$this->intlFormatters[$key] = & $formatter;
+			$this->intlFormatters[$key] = $formatter;
 		}
 		return $this->intlFormatters[$key];
 	}
@@ -420,7 +420,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			$this->setUpSystemLocaleAndEncodings();
 			$this->setUpLocaleConventions();
 		}
-		$lc = & $this->localeConventions;
+		$lc = $this->localeConventions;
 		// decide number to format is positive or negative
 		$negative = $valueToFormat < 0;
 		// complete decimals count by given argument or by default fractal digits
