@@ -336,7 +336,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 		$attributes = NULL,
 		$textAttributes = NULL
 	) {
-		if ($decimalsCount !== NULL) $decimalsCount = $this->defaultDecimalsCount;
+		if ($decimalsCount === NULL) $decimalsCount = $this->defaultDecimalsCount;
 		$attributes = is_array($attributes) 
 			? $attributes 
 			: $this->intlDefaultAttributes ;
@@ -424,9 +424,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 		// decide number to format is positive or negative
 		$negative = $valueToFormat < 0;
 		// complete decimals count by given argument or by default fractal digits
-		$decimalsCount = $decimalsCount !== NULL
-			? $decimalsCount
-			: $this->defaultDecimalsCount;
+		if ($decimalsCount === NULL) $decimalsCount = $this->defaultDecimalsCount;
 		// complete decimals point by given argument or by locale conventions
 		$decimalPoint = $decimalPoint !== NULL
 			? $decimalPoint
