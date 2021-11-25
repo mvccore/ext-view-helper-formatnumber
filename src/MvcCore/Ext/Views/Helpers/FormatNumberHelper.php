@@ -43,7 +43,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.0.1';
+	const VERSION = '5.0.2';
 
 	/**
 	 * If this static property is set - helper is possible
@@ -341,6 +341,7 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			? $attributes 
 			: $this->intlDefaultAttributes ;
 		$attributes[\NumberFormatter::MIN_FRACTION_DIGITS] = $decimalsCount;
+		$attributes[\NumberFormatter::MAX_FRACTION_DIGITS] = $decimalsCount;
 		$formatter = $this->getIntlNumberFormatter(
 			$this->langAndLocale,
 			$style !== NULL
