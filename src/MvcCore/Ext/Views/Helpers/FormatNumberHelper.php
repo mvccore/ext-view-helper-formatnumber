@@ -340,8 +340,10 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 		$attributes = is_array($attributes) 
 			? $attributes 
 			: $this->intlDefaultAttributes ;
-		$attributes[\NumberFormatter::MIN_FRACTION_DIGITS] = $decimalsCount;
-		$attributes[\NumberFormatter::MAX_FRACTION_DIGITS] = $decimalsCount;
+		if (!array_key_exists(\NumberFormatter::MIN_FRACTION_DIGITS, $attributes))
+			$attributes[\NumberFormatter::MIN_FRACTION_DIGITS] = $decimalsCount;
+		if (!array_key_exists(\NumberFormatter::MAX_FRACTION_DIGITS, $attributes))
+			$attributes[\NumberFormatter::MAX_FRACTION_DIGITS] = $decimalsCount;
 		$formatter = $this->getIntlNumberFormatter(
 			$this->langAndLocale,
 			$style !== NULL
