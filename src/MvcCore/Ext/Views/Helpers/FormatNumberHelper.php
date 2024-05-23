@@ -34,7 +34,7 @@ namespace MvcCore\Ext\Views\Helpers;
  * @see http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformattextattribute
  * @see http://php.net/manual/en/function.number-format.php
  * @see http://php.net/manual/en/function.localeconv.php
- * @method \MvcCore\Ext\Views\Helpers\FormatNumberHelper GetInstance()
+ * @method static \MvcCore\Ext\Views\Helpers\FormatNumberHelper GetInstance()
  */
 class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHelper {
 
@@ -345,7 +345,9 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 		if (!array_key_exists(\NumberFormatter::MAX_FRACTION_DIGITS, $attributes))
 			$attributes[\NumberFormatter::MAX_FRACTION_DIGITS] = $decimalsCount;
 		$formatter = $this->getIntlNumberFormatter(
-			$this->langAndLocale,
+			$this->langAndLocale != NULL 
+				? $this->langAndLocale
+				: $this->defaultLangAndLocale,
 			$style !== NULL
 				? $style
 				: $this->intlDefaultStyle,
@@ -381,6 +383,9 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			serialize(func_get_args())
 		]);
 		if (!isset($this->intlFormatters[$key])) {
+			if ($this->langAndLocale === NULL) {
+				x($this);
+			}
 			$formatter = \numfmt_create(
 				$this->langAndLocale, $style, $pattern
 			);
