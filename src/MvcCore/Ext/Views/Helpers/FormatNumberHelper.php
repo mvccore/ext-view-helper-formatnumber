@@ -383,9 +383,6 @@ class FormatNumberHelper extends \MvcCore\Ext\Views\Helpers\InternationalizedHel
 			serialize(func_get_args())
 		]);
 		if (!isset($this->intlFormatters[$key])) {
-			if ($this->langAndLocale === NULL) {
-				x($this);
-			}
 			$formatter = \numfmt_create(
 				$this->langAndLocale, $style, $pattern
 			);
