@@ -28,7 +28,7 @@
 	}],
 	"require": {
 		"php": ">=5.4.0",
-		"mvccore/ext-view-helper-internationalized": "^5.2"
+		"mvccore/ext-view-helper-internationalized": "^5.3"
 	},
 	"autoload": {
 		"classmap": [
